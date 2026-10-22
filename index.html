@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0b0b10">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SoundStack">
+<title>SoundStack</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="bg"><div class="bgl" id="bg0"></div><div class="bgl" id="bg1"></div><div class="bgv"></div></div>
+<div id="app">
+  <header>
+    <div class="topbar">
+      <button class="ic" id="btn-search" aria-label="Search songs"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
+      <div class="brand">SOUNDSTACK</div>
+      <button class="ic" id="btn-add" aria-label="Add songs"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+    </div>
+    <div id="info">
+      <h1 id="title">&nbsp;</h1>
+      <div id="meta">&nbsp;</div>
+    </div>
+    <div id="badge" class="badge"><span class="eq"><i></i><i></i><i></i></span><span id="badge-t">Now playing</span></div>
+  </header>
+  <main id="stage"><div id="glow"></div><div id="float"><div id="stack"></div></div><div id="empty" hidden>No songs here yet.<br>Tap ＋ to add songs from your phone.</div></main>
+  <section id="controls">
+    <button class="ic sm" id="btn-shuffle" aria-label="Shuffle"><svg viewBox="0 0 24 24"><path d="M4 7h3.5c4 0 5 10 9 10H20M17 14l3 3-3 3M4 17h3.5c1.4 0 2.4-1.2 3.3-2.8M13.2 9.8C14.1 8.2 15.1 7 16.5 7H20M17 4l3 3-3 3"/></svg></button>
+    <button class="ic md" id="btn-prev" aria-label="Previous"><svg viewBox="0 0 24 24" class="fill"><path d="M6 5h2v14H6zM20 5v14L9.5 12z"/></svg></button>
+    <button id="btn-play" aria-label="Play"><svg viewBox="0 0 24 24" class="fill"><path id="play-path" d="M8 5v14l11-7z"/></svg></button>
+    <button class="ic md" id="btn-next" aria-label="Next"><svg viewBox="0 0 24 24" class="fill"><path d="M16 5h2v14h-2zM4 5v14l10.5-7z"/></svg></button>
+    <button class="ic sm" id="btn-repeat" aria-label="Repeat"><svg viewBox="0 0 24 24"><path d="M5 11V9a2 2 0 0 1 2-2h11M15 4l3 3-3 3M19 13v2a2 2 0 0 1-2 2H6M9 20l-3-3 3-3"/></svg><b id="rep1">1</b></button>
+  </section>
+  <section id="scrub">
+    <canvas id="wave" aria-label="Seek"></canvas>
+    <div class="times"><span id="t-cur">0:00</span><span id="t-dur">0:00</span></div>
+  </section>
+  <nav id="bottombar">
+    <button class="ic round" id="btn-fav" aria-label="Favorite"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>
+    <button id="btn-pick"><svg viewBox="0 0 24 24"><path d="M4 7h3.5c4 0 5 10 9 10H20M17 14l3 3-3 3M4 17h3.5c1.4 0 2.4-1.2 3.3-2.8M13.2 9.8C14.1 8.2 15.1 7 16.5 7H20M17 4l3 3-3 3"/></svg><span id="pick-t">Pick for me</span></button>
+    <button class="ic round" id="btn-menu" aria-label="Library and filters"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></button>
+  </nav>
+</div>
+
+<div id="sheet" class="sheet" hidden>
+  <div class="sheet-card">
+    <div class="grab"></div>
+    <div class="sheet-head"><h2 id="sheet-h">Library</h2><button class="ic" id="sheet-close" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div id="search-row"><input id="q" type="search" placeholder="Search songs, styles…" autocomplete="off"></div>
+    <div class="chips" id="chips">
+      <button class="chip" id="c-shuffle">Shuffle</button>
+      <button class="chip" id="c-repeat">Repeat: All</button>
+      <button class="chip" id="c-favs">♥ Favorites only</button>
+    </div>
+    <ul id="list"></ul>
+    <button class="addbtn" id="sheet-add">＋ Add songs from your phone</button>
+    <p class="help">Download a song from Suno as MP3, then tap <b>＋</b> and pick it. The title and cover come in automatically and it stays on this phone, even offline.</p>
+  </div>
+</div>
+<input type="file" id="file" accept="audio/*,.mp3,.m4a,.wav" multiple hidden>
+<div id="toast"></div>
+<audio id="au" preload="metadata" playsinline></audio>
+<script src="songs.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

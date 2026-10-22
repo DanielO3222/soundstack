@@ -1,0 +1,15 @@
+{
+ "name": "SoundStack",
+ "short_name": "SoundStack",
+ "description": "A 3D cover-stack music player for your own Suno songs.",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#07070a",
+ "theme_color": "#07070a",
+ "icons": [
+  { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+  { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+ ]
+}
